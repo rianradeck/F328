@@ -7,18 +7,52 @@
 \usepackage{float}
 \usepackage{amssymb}
 \usepackage{siunitx}
+\usepackage{physics}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,  
+    urlcolor=cyan,
+    }
 \graphicspath{ {images/} }
 
 \title{Projeto 1 - F328}
 \author{Rian Radeck Santos Costa - 187793 \\ Grupo I06}
-\date{07 de Junho de 2022}
+\date{15 de Junho de 2022}
+\renewcommand*\contentsname{Sumário}
 
 \begin{document}
 
-\maketitle 
-
+\maketitle
+\newpage
+\tableofcontents
 \newpage
 
+\section{Enunciado e avisos}
+    O objetivo deste projeto é estudar a radiação emitida por uma partícula carregada e estudar o resultado em algumas situações reais. Todas as referências bibliográficas estão no fim desse documento.
+
+    \begin{enumerate}
+        \item \textbf{\textit{Radiação emitida:}} Para calcular a radiação emitida, considere uma carga que está inicialmente movendo-se em velocidade constante $v_0$ até $t = 0$. Ela sofre então uma aceleração negativa constante com valor $a = v_0/\tau$, a qual leva a partícula para o repouso em um tempo $t = \tau$. Vamos assumir que $v_0 \ll c_0$, onde $c_0$ é a velocidade da luz no vácuo (veja a figura).
+
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=0.8\textwidth]{start}
+            \label{fig:fig0}
+        \end{figure}
+
+        Calcule a energia total do campo eletromagnético transversal (onda eletromagnética) e calcule a potência irradiada.
+
+        \item \textbf{\textit{Átomo de hidrogênio:}} Considere um modelo tipo de Bohr para o átomo de hidrogênio, isto é, o elétron realizando uma órbita circular em torno do próton. Utilize valores realistas para o raio de Bohr do átomo de hidrogênio e estime o tempo que levaria para o elétron colapsar no núcleo.
+
+        \item \textbf{\textit{Radiação síncrotron:}} Para resolver uma situação relativística, transforme o problema para um    referencial $F'$ no qual a partícula move-se lentamente. Nesse referencial você pode utilizar o resultado obtido anteriormente. Depois transforme para o referencial desejado. Considere agora um elétron altamente relativístico $(\gamma \gg 1)$ movendo-se perpendicularmente a um campo magnético $B$. Ele é continuamente acelerado perpendicularmente ao campo e deve irradiar. Calcule a radiação síncrotron, isto é a potência emitida pelo elétron. Sugestão: 
+
+    \begin{enumerate}
+        \item Qual a relação entre a potência irradiada, $P_{rad}$ emitida em um referencial $F$ e a potência irradiada, $P_{rad}'$ em um referencial $F'$ que é um referencial inercial em relação a $F$?
+        \item Transforme o problema para um referencial $F'$ que esteja momentaneamente movendo-se com a partícula. Transforme (relativisticamente) os campos e encontre $P_{rad}'$. Faça a transformação da potência irradiada de volta para o referencial do laboratório. De posse do resultado, comente as implicações do seu resultado para um colisor circular (tipo LHC) e um síncrotron (tipo Sirius).
+    \end{enumerate}
+    \end{enumerate}
+
+\newpage
 \section{Radiação emitida}
     \par
     A primeira observação que devemos fazer é que enquanto uma partícula carregada está em movimento ela tem um campo fácil de ser observado, como na figura 1.
@@ -30,7 +64,7 @@
         \label{fig:fig1}
     \end{figure}
 
-    Também sabemos que, de acordo com as leis do eletromagnetismo clássico, toda partícula que sofre uma aceleração emite radiação e faz um pulso eletromagnetico no período de aceleração, dividindo o espaço em três regiões, a interna, que já notou que a partícula está se movendo, a externa, que ainda não notou isso e a intermediária, que chamamos de \textit{ring of kinks}.
+    Sabemos que a informação sobre a nossa partícula para qualquer ponto no espaço se move na velocidade da luz, portanto o nosso pulso se move nessa velocidade. Também sabemos que, de acordo com as leis do eletromagnetismo clássico, toda partícula que sofre uma aceleração emite radiação e faz um pulso eletromagnetico no período de aceleração, dividindo o espaço em três regiões, a interna, que já notou que a partícula está se movendo, a externa, que ainda não notou isso e a intermediária, que chamamos de \textit{ring of kinks}.
 
     \begin{figure}[h]
         \centering
@@ -39,11 +73,11 @@
         \label{fig:fig2}
     \end{figure}
 
-    Vamos então marcar alguns pontos importantes para calcularmos o campo na região intermediária e a potência irradiada. Sabemos que a informação sobre a nossa partícula para qualquer ponto no espaço se move na velocidade da luz, portanto o nosso pulso se move nessa velocidade. Tome um tempo $t = T \gg \tau$, teremos o seguinte diagrama:
+    Vamos então marcar alguns pontos importantes para calcularmos o campo na região intermediária e a potência irradiada. Tome um tempo $t = T \gg \tau$, teremos o seguinte diagrama:
 
     \begin{figure}[h]
         \centering
-        \includegraphics[width=0.8\textwidth]{diagrama}
+        \includegraphics[width=0.7\textwidth]{diagrama}
         \\{Figura 3: Diagrama para um instante $t = T \gg \tau$, um longo tempo após a parada da partícula}
         \label{fig:fig3}
     \end{figure}
@@ -52,7 +86,7 @@
 
     Vamos então definir nossas regiões. Aqui, ``Region I" é a região externa ao pulso, que ainda não recebeu a informação que a partícula parou, ou seja está a uma distância maior que $cT$ do ponto $x = 0$ $(R > cT)$. Similarmente, ``Region II'' é a região que já recebeu essa informação, portanto sua distância ao ponto $x = 0$ é $R \leq c(T - \tau)$ e a região do pulso que está definida no diagrama como ``Shell'' é a que está entre as duas definidas anteriormente e tem espessura de $c\tau$.
 
-    Agora devemos nos perguntar: Qual o formato de uma linha de campo na região de transição? Devemos olhar para a lei de Gaus para obter a resposta. Tome uma linha de campo que sai do ponto A (partícula parada) e atinge o ponto B, no início da região de transição. Essa linha faz uma angulação $\theta$ com o eixo de viagem da partícula. Sabemos então que esse cone de angulação possui uma certa quantidade de fluxo atravessando ele. Se tomarmos um cone que é definido por CD (atinge o eixo de viagem onde a região externa pensa que é onde está a partícula), ele terá o mesmo $\theta$ e, portanto, terá a mesma quantidade de fluxo atravessando-o. (Observe que isso só é verdade pois $v_0$ é pequeno quando comparado a $c$, o que nos deixa ignorar efeitos relativísticos.) Portanto as linhas de campo AB e CD devem estar conectadas por BC, já que são a mesma linha.
+    Agora devemos nos perguntar: Qual o formato de uma linha de campo na região de transição? Devemos olhar para a lei de Gauss para obter a resposta. Tome uma linha de campo que sai do ponto A (partícula parada) e atinge o ponto B, no início da região de transição. Essa linha faz uma angulação $\theta$ com o eixo de viagem da partícula. Sabemos então que esse cone de angulação possui uma certa quantidade de fluxo o atravessando (veja o cone vermelho na imagem.) Se tomarmos um cone que é definido por CD e o eixo de viagem da partícula, de mesmo tamanho porém com seu centro em $x = v_0T$ (veja o cone azul na imagem), ele terá o mesmo $\theta$ e, portanto, terá a mesma quantidade de fluxo atravessando-o. (Observe que isso só é verdade pois $v_0$ é pequeno quando comparado a $c$, o que nos deixa ignorar efeitos relativísticos.) Aliando isso com o fato de linhas de campo não se cruzarem podemos concluir que as linhas de campo AB e CD são a mesma linha e devem estar conectadas por BC.
 
     \begin{figure}[H]
         \centering
@@ -67,7 +101,7 @@
     \frac{E_\theta}{E_r} = \frac{v_0 T\sin{\theta}}{c\tau}
     \end{equation}
 
-    Se tomarmos uma gaussiana equivalente a região interna e a casca $(R = cT)$ podemos calcular $E_r$ em B.
+    Observe que $E_r$ não muda na região intermediária, para ver isso basta tomar uma gaussiana com $c(t - \tau) < R \leq cT$, veremos que o campo $E_r$ é constante e a carga envolvida é a mesma. Se tomarmos uma gaussiana equivalente a parte externa da casca $(R = cT)$ podemos calcular $E_r$.
 
     \begin{equation} \label{eq2}
     \begin{split}
@@ -84,29 +118,57 @@
         E_\theta = \frac{v_0T\sin{\theta}}{c\tau}E_r = \frac{qv_0\sin{\theta}}{4\pi\epsilon_0c^3T\tau}
     \end{equation}
 
-    Mas, $v_0 / \tau = a$ e $cT = R$, então nosso resultado é melhor representado por:
+    mas, $v_0 / \tau = a$ e $cT = R$, então nosso resultado é melhor representado por:
 
     \begin{equation} \label{eq4}
         E_\theta = \frac{qa\sin{\theta}}{4\pi\epsilon_0c^2R}
     \end{equation}
 
-    Como podemos concluir, $E_\theta$ é proporcional a $1/R$ e, com o passar do tempo, $E_r$ se torna negligível quando comparado a $E_\theta$. Assim, $E$ se torna perpendicular a $R$, o que causa um campo magnético perpenduicular a $E$ e a $R$ com passar de alguns instantes. Isso é uma das propriedades fundamentais de uma onda eletromagnética.
+    Como podemos concluir, $E_\theta$ é proporcional a $1/R$ e, com o passar do tempo, $E_r$ se torna negligível quando comparado a $E_\theta$ portanto, $E$ será perpendicular a $\vec R$. De acordo com as equações de Maxwell um campo elétrico variável gera uma corrente de deslocamento, o que causa um campo magnético $B$ perpendicular a $E$ e a $\vec R$, isso é uma das propriedades fundamentais de uma onda eletromagnética.
 
-    Vamos então calcular a enrgia que está guardada no campo elétrico transversal, para toda a região intermediária (casca do pulso). A densidade de energia será:
+    Vamos então calcular a energia que está guardada no campo elétrico transversal para toda a região intermediária. A densidade de energia de um campo elétrico $E$ em determinada região do espaço é definida pela equação $\frac{1}{2}\epsilon_0E^2$, assim para nosso campo elétrico transversal nossa densidade de energia será:
 
     \begin{equation} \label{eq5}
         \frac{\epsilon_0E_\theta^2}{2} = \frac{q^2a^2\sin^2{\theta}}{32\pi^2\epsilon_0R^2c^4}
     \end{equation}    
 
-    Como o volume da casca será $4\pi R^2 c\tau$ e o valor médio de $\sin^2{\theta}$ sobre uma esfera completa é $\frac{2}{3}$, podemos concluir que a energia total que atravessa o campo elétrico é:
+    Como o volume da casca será $4\pi R^2 c\tau$ e o valor médio de $\sin^2{\theta}$ sobre uma esfera completa é $2/3$ já que $x^2 + y^2 + z^2 = R^2 \Rightarrow \overline{x^2} = R^2/3$ e $\cos^2{\theta} = x^2/R^2$, chegamos ao resultado que $\overline{\cos^2{\theta}} = \overline{x^2} /R^2 = 1/3 \Rightarrow \overline{\sin^2{\theta}} = 2/3$. Podemos concluir que a energia total que atravessa o campo elétrico é:
 
     \begin{equation} \label{eq6}
         \frac{q^2a^2}{32\pi^2\epsilon_0R^2c^4}\frac{2}{3}4\pi R^2c\tau = \frac{q^2a^2\tau}{12\pi\epsilon_0c^3}
     \end{equation}    
 
-    Podemos chegar a mesma conclusão se integrarmos a densidade de energia sobre toda a casca.
+    Para sabermos quanta energia nossa onda magnética carrega vamos olhar para as equações de Maxwell:
 
-    Como descobrimos a energia em relação ao campo elétrico, sabemos que o campo magnético deve ter a mesma quantidade de energia. Assim, a energia total será a soma da energia dos dois campos:
+    \begin{equation}
+    \begin{split}
+        \curl\textbf{E} &= -\frac{1}{c}\frac{\delta\textbf{B}}{\delta t} \\
+        \curl\textbf{B} &= \frac{1}{c}\frac{\delta\textbf{E}}{\delta t} + \frac{4\pi}{c}\textbf{J} \\
+        \div\textbf{E} &= 4\pi\rho \\
+        \div\textbf{B} &= 0
+    \end{split}
+    \end{equation}
+
+    Perceba que em um espaço vazio, onde $\rho$ e $\textbf{J}$ são zero, as equações são traduzidas para o seguinte
+
+    \begin{equation}
+    \begin{split}
+        \curl\textbf{E} &= -\frac{1}{c}\frac{\delta\textbf{B}}{\delta t} \\
+        \curl\textbf{B} &= \frac{1}{c}\frac{\delta\textbf{E}}{\delta t} \\
+        \div\textbf{E} &= 0 \\
+        \div\textbf{B} &= 0
+    \end{split}
+    \end{equation}
+
+    Assim fica claro que quando uma onda elétrica viaja pelo espaço vazio, uma onda magnética de mesma intensidade e perpendicular a ela (e a direção de propagação) deve surgir, como na figura a seguir
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.9\textwidth]{wave}
+        \\ Figura 5: Onda eletromagnética viajando pelo espaço vazio no eixo $y$
+    \end{figure}
+
+    Assim a energia total de nossa onda será o dobro da energia da onda elétrica.
 
     \begin{equation} \label{eq7}
         \textrm{Energia total propagada pelo campo eletromagnético} =\frac{q^2a^2\tau}{6\pi\epsilon_0c^3}
@@ -115,106 +177,156 @@
     Perceba que o raio $R$ não participa mais da nossa equação, isso significa que essa quantidade de energia simplesmente passeia pelo espaço, se distanciando da partícula, com a velocidade da luz, a partir do local da desaceleração $(x = 0)$. Como $\tau$ é o período da desaceleração, e também a duração do pulso eletromagnético, podemos declarar que a potência irradiada durante o processo de desaceleração foi:
 
     \begin{equation} \label{eqMaster}
-        P_{rad} = \frac{q^2a^2}{6\pi\epsilon_0c^3}
+        P_{rad} = \frac{q^2a^2}{6\pi\epsilon_0c^3} = \mu_0\frac{q^2a^2}{6\pi c}
     \end{equation}
 
-    Perceba também que não importa se nossa partícula está acelerando ou desacelerando, só importa a sua magnitude. Complementando a ideia de diferentes referenciais, $P_{rad}$ é uma grandeza invariante de \textit{Lorentz}, já que $P_{rad}$ é \textit{energia / tempo}, e energia se transforma como o tempo na teoria da relatividade especial.
+    Esse resultado é bem conhecido e chamado de fórmula de Larmor.
+
+    Perceba também que não importa se nossa partícula está acelerando ou desacelerando, só importa a magnitude da aceleração. Complementando a ideia de diferentes referenciais, $P_{rad}$ é uma grandeza invariante de \textit{Lorentz}, já que $P_{rad}$ é \textit{energia / tempo}, e energia se transforma como o tempo na teoria da relatividade especial de Einstein.
 
     Aqui nós obtemos o seguinte resultado: A equação \ref{eqMaster} nos dá a taxa instantânea de irradiação de energia de uma partícula carregada que sofre uma variação de aceleração. Isso é muito útil e pode ser utilizado em diversas aplicações, afinal, ondas eletromagnéticas movem o mundo.
 
 \newpage
 \section{Átomo de hidrogênio}
 
-    Aqui vamos trabalhar com o modelo atómico de Rutherford e não o de Bohr, já que Bohr fez correções ao modelo planetário de Rutherford utilizando ideias de teoria quântica de Planck, os conceitos de Einstein sobre o fóton e a mecânica clássica Newtoniana.
+    Aqui vamos trabalhar com o modelo atómico de Rutherford e não o de Bohr, já que Bohr fez correções ao modelo planetário de Rutherford utilizando ideias de teoria quântica de Planck, os conceitos de Einstein sobre o fóton e a mecânica clássica Newtoniana. Recomendo a leitura da seção 42.3 do livro ``Física para cientistas e engenheiros, 2ª ed. (Brasil), 2018", dos autores Jewett \& Serway para uma decrição mais detalhada do modelo atómico de Bohr.
 
-    No modelo de Bohr, a sua teoria se aplica da seguinte maneira ao átomo de hidrogênio:
+    \subsection{Um breve resumo sobre o átomo de hidrogênio de Bohr:}
 
-    \begin{enumerate}
-        \item O elétron se move em óbitas circulares ao redor do próton, sob a influência de uma força elétrica de atração como na figura 5.
-        \item Somente algumas orbitas do elétron são estáveis. Quando em alguma dessas órbitas, o elétron não emite energia na forma de radiação, apesar de estar acelerando (Bohr chamou esses estados de ``estados estacionários''.) Portanto, a quantidade total de energia no átomo permanece a mesma e mecânica clássica pode ser utilizada para descrever a movimentação do elétron. Esse modelo afirma que a aceleração centrípeta do elétron não faz com que ele emita continuamente radiação, perdendo energia e eventualmente espiralando para o núcleo, como previsto para o modelo interplanetário de Rutherford.
-        \item O átomo deve emitir radiação somente quando o elétron faz a transição de um estado estacionário mais energético para um estado estacionário menos energético. Essa transição não pode ser visualizada ou tratada classicamente. Em particular, a frequência \textit{f} do fóton emitida na transição de estados está relacionada com a mudança na energia do átomo e não é igual a frequência da movimentação na órbita do elétron. A frequência da radiação emitida é encontrada a partir da expressão da conservação de energia:
-        \begin{equation} \label{eq9}
-            E_i - E_f = hf
-        \end{equation}
-        onde $E_i$ é a energia do estado inicial, $E_f$ é a energia do estado final, e $E_i > E_f$. Além disso, a energia de um fóton incidente pode ser absorvida pelo átomo, mas somente se o fóton possuir energia que combina exatamente com a diferença de energia entre um estado permitido do átomo e um estado mais energético. Na sua absorção, o fóton desaparace e o átomo faz uma transição para o estado mais energético.
-        \item O tamanho de uma órbita permitida  é determinada pela condição imposta sob o momento angular orbital do elétron: as órbitas permitidas são aquelas para qual o momento angular orbital do elétron sobre o núcleo é quantizado e igual a um múltiplo inteiro de $\hslash = h/2\pi$, onde $h$ é a constante de Planck.
+    Bohr propôs que o elétron na órbita do átomo de hidrogênio, só ocupasse determinadas regiões do espaço, onde ele não irradiaria e perderia energia colapsando no núcleo. Essas órbitas propostas eram circulares e ele as chamou de ``estados estacionários".
 
-    \end{enumerate}
+    Bohr propôs que o elétron poderia ``saltar" de uma órbita (estado estacionário) para outra se liberasse energia em forma de fóton, indo para uma órbita menos energética, ou se recebesse a energia de um fóton, o que causaria que o elétron fosse para um estado mais energético.
+
+    Uma análise um pouco mais quantitativa é dizer que as órbitas permitidas seriam aquelas que o momento angular do elétron seria um múltiplo inteiro de $\hslash = h/2\pi$, onde $h$ é a constante de Planck.
 
     \begin{figure}[h]
         \centering
         \includegraphics[width=0.5\textwidth]{bohr}
-        \\{Figura 5: Modelo do átomo de hidrogênio de Bohr}
+        \\{Figura 6: Modelo do átomo de hidrogênio de Bohr}
         \label{fig:bohr}
     \end{figure}
 
-    O modelo de Bohr foi muito vitorioso com sua concordância com alguns resultados experimentais feitos no átomo de hidrogênio, porém ele sofreu com algumas dificuldades. Uma das primeiras indicações que o modelo de Bohr precisava ser modificado surgiu quando técnicas melhoradas de espectroscopia foram utilizadas para examinar as linhas espectrais do hidrogênio. Surgiram diferenças entre a teoria e os resultados experimentais e esforços para explicar esses e outros devios do modelo de Bohr levaram a modificações na teoria e inevitavelmente a substituição por uma nova.
+    \subsection{Tempo de colapso}
 
-    \newpage
+    % \newpage
     Bom, esclarecido o comportamento do átomo de Bohr, vamos então trabalhar com o modelo de Rutherford, que permite raios arbitrários para a órbita do elétron.
 
-    De acordo com a teoria do eletromagnetismo de Maxwell, cargas com aceleração centrípeta com frequência de revolução $f$, devem irradiar ondas eletromagnéticas com frequência $f$, assim o modelo átomico de Rutherford é guiado para autodestruição. 
+    De acordo com a teoria do eletromagnetismo de Maxwell, cargas com aceleração centrípeta com frequência de revolução $f$, devem irradiar ondas eletromagnéticas com frequência $f$, assim o modelo átomico de Rutherford é guiado para autodestruição.
 
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.5\textwidth]{ruth}
-        \\{Figura 6: O modelo átomico de Rutherford prevê seu decaimento}
+        \\{Figura 7: O modelo átomico de Rutherford prevê seu decaimento}
         \label{fig:ruth}
     \end{figure}
 
-    Considerando o sistema próton-elétron como um sistema não isolado energeticamente, podemos equacionar que:
-    \begin{equation} \label{eq10}
-        \Delta K + \Delta U = T_{RE}
+    Vamos esclarecer alguns parâmetros para o nosso problema:
+    \begin{itemize}
+        \item O elétron está sempre em uma órbita quase que perfeitamente circular ($v \approx v_\theta \gg v_r$).
+        \item A taxa de perda energética é bem representada pelo resultado clássico obtido na seção 2 desse documento.
+    \end{itemize}
+
+    Dessa maneira podemos equacionar que a força centrípeta será igual a força elétrica.
+    \begin{equation}
+        \frac{mv^2}{R} = \frac{e^2}{4\pi\epsilon_0R^2} \Leftrightarrow \frac{v^2}{R} = \frac{e^2}{4\pi\epsilon_0mr^2}
     \end{equation}
-    Onde $K$ é a energia cinética do elétron, $U$ é a energia potencial elétrica do sistema próton-elétron e $T_{RE}$ é a radiação eletromagnética emitida. Como a energia está deixando o sistema, o raio da orbita do elétron diminiu (Figura 6).
+    onde $v^2/R$ é a aceleração do elétron.
 
-    Dessa forma, a medida que o elétron se aproxima do núcleo, a sua velocidade angular aumenta, o que nos leva a uma freqûencia de radiação crescente e o colapso inevitável do átomo.
+    Vamos agora equacionar a energia total presente no sistema:
+    \begin{equation}
+        E = K + U = \frac{mv^2}{2} - \frac{e^2}{4\pi\epsilon_0R} = -\frac{e^2}{8\pi\epsilon_0R}
+    \end{equation}
+    onde $E$ é a energia total do sistema, $K$ é a energia cinética e $U$ a energia potencial.
 
-    Sabemos então que em seu colapso, todo a energia do átomo foi emitida como radiação, portanto utilizando o resultado encontrado na equação \ref{eq7}, teremos a seguinte relação:
-    \begin{equation} \label{eq11}
+    O período de rotação será
+
+    \begin{equation}
+        T = \frac{2\pi R}{v} = \frac{1}{\abs{e}}\times4\sqrt{\pi^3\epsilon_0mR}
+    \end{equation}
+
+    Podemos supor que a energia irradiada em uma revolução é muito menor que a energia total, o que nos deixa trabalhar com $R$ sendo uma função do tempo, portanto $R = R(t)$. Então vamos calcular a energia irradiada em uma revolução:
+
+    \begin{equation}
+        P_{rad}T = \mu_0\frac{e^2a^2}{6\pi c}T = \mu_0\frac{e^2v^2}{6\pi cR^4}
+    \end{equation}
+
+    Vamos agora calcular a mudança na energia total em uma revolução:
+
+    \begin{equation}
     \begin{split}
-        \Delta K + \Delta U &= T_{RE} \\
-        \frac{1}{2}m_e v^2 - \frac{e^2}{4\pi\epsilon_0R} &= \frac{e^2a^2\tau}{6\pi\epsilon_0c^3}
+        E(R(t + T)) - E(R(t)) &= -\frac{e^2}{8\pi\epsilon_0R(t + T)} - [-\frac{e^2}{8\pi\epsilon_0R(t)}] \\
+        &\approx \frac{e^2T}{8\pi\epsilon_0R^2(t)}\frac{\delta R(t)}{\delta t}
+    \end{split}
+    \end{equation}
+    pois $R(t + T) = R(T) + T\frac{\delta R(t)}{\delta t}$. Tabém é comum escrever $\frac{\delta R(t)}{\delta t}$ como $\dot{R}(t)$
+
+    Como podemos ver chegamos a uma equação diferencial
+
+    %(igualando a potência irradiada com a mudança de energia)
+    \begin{equation}
+        \frac{\delta R(t)}{\delta t} = -\frac{\mu_0ce^4}{12\pi^2m^2R^2(t)} \Leftrightarrow R^2(t)\frac{\delta R(t)}{\delta t} = -\frac{\mu_0ce^4}{12\pi^2m^2}\delta t
+    \end{equation}
+
+    \newpage
+    Integrando a equação 16:
+
+    \begin{equation}
+    \begin{split}
+        \int R^2\delta R &= -\frac{\mu_0ce^4}{12\pi^2m^2} \int\delta t \\
+        \frac{R^3}{3} &= -\frac{\mu_0ce^4}{12\pi^2m^2}t + K
     \end{split}
     \end{equation}
 
-    Resolvendo a equação para $\tau$ temos o tempo para o colapso.
-    \begin{equation} \label{eq12}
-        \tau = \frac{2a_0e^2}{c^3(6\pi\epsilon_0a_0m_e - \frac{e^2}{v_0^2})}
+    onde $K$ é a constante de integração. Se tomarmos no tempo $t = 0$ nosso raio como o raio de Bohr $R_0$, nossa constante $K = \frac{R_0^3}{3}$ e temos um resultado mais representativo para a realidade que será:
+
+    \begin{equation}
+        R_0^3 - R^3(t) = \frac{\mu_0ce^4}{4\pi^2m^2}t
     \end{equation}
-    Onde $v_0$, $e$ e $m_e$ são respectivamente a velocidade inicial, a carga e a massa do elétron e $a_0$ é o raio de Bohr.
-    Utilizando os valores da seguinte maneira:
-    $$
-    a_0 = \SI{5.29e-7}{\meter}
-    $$$$
-    e = \SI{-1.6e-19}{\coulomb}
-    $$$$
-    c = \SI{2.99e8}{\meter\per\second}
-    $$$$
-    e_0 = \SI{8.85e-12}{\coulomb\squared\per\newton\per\meter\squared}
-    $$$$
-    m_e = \SI{9.11e-31}{\kilogram}
-    $$$$
-    v_0 = 0.75c = \SI{2.24e8}{\meter\per\second}
-    $$
-    Obtemos que $\tau$, o tempo de colisão será:
-    $$
-    \tau = \SI{1.26e-23}{\second}
-    $$
+
+    Finalmente podemos obter o tempo de colapso do átomo de hidrogênio de Rutherford/Bohr
+
+    \begin{equation}
+        R(\tau) = 0 \Rightarrow \tau = \frac{4\pi^2m^2}{\mu_0^2ce^4}R_0^3
+    \end{equation}
+
+    Utilizando 
+    $$c = \SI[inter-unit-product =\cdot]{2.99e8}{\meter\per\second}$$
+    $$m = \SI{9.11e-31}{\kilogram}$$
+    $$e = \SI{-1.6e-19}{\coulomb}$$
+    $$\mu_0 = \SI[inter-unit-product =\cdot]{1.256e-6}{\kilogram\meter\per\second\squared\per\ampere\squared}$$
+    $$R_0 = \SI{5.29e-11}{\meter}$$
+    obtemos
+    $$\tau = \SI{1.57e-11}{\second}$$
+
 
 \newpage
 \section{Radiação Síncrotron}
 
-    Seja $v$ a velocidade do elétron no referencial $F$ na terra, vamos calcular então seu campo no referencial $F'$ que é o referencial que se move com o elétron em um dado instante $\delta t$. Usando as transformadas de Lorentz, o campo elétrico em $F'$ será $E' = \gamma v\times B'$, porém $B' = B$, já que no referencial $F'$ a partícula não sente força magnética pois $v' = 0$. 
+    Seja $v$ a velocidade do elétron no referencial $F$ na terra, vamos calcular então seu campo no referencial $F'$ que é o referencial que se move com o elétron em um dado instante $\delta t$. Usando as transformadas de Lorentz, o campo elétrico em $F'$ será $E' = \gamma v\times B'$.
+
+    Vamos então calcular $E'$ e $B'$ de acordo com as trasnformadas de Lorentz
+    \begin{equation}
+    \begin{split}
+        E' &= -v \times B \\
+        B' &= \frac{1}{c^2}v \times E \\
+        E'_x &= E_x \\
+        E'_y &= \gamma(E_y - vB_z) \\
+        E'_z &= \gamma(E_z + vB_y) \\
+        B'_x &= B_x \\ 
+        B'_y &= \gamma(B_y + \frac{v}{c^2}E_z) \\
+        B'_z &= \gamma(B_z - \frac{v}{c^2}E_y) \\
+    \end{split}
+    \end{equation}
+    perceba então que para nossa situação $B' = B$.
 
     Antes de prosseguir com os cálculos, observe que em $F'$
     $$
     \Delta t = \gamma\Delta t' \iff \Delta x' = 0
     $$$$
-    E = \gamma E' \iff p' = 0
+    U = \gamma U' \iff p' = 0
     $$
 
-    Aqui $E$ representa a energia e não o campo elétrico. Isso implica então que $\Delta E/\Delta t = \Delta E'/\Delta t' \Longrightarrow P = P'$ então, antes de qualquer cálculo, sabemos que nossa radiação emitida será a mesma nos dois referenciais. Vamos então calcular $P'$ em relação ao campo magnético $B$ e as constantes relativísticas.
+    Aqui $U$ representa a energia. Isso implica então que $\Delta U/\Delta t = \Delta U'/\Delta t' \Longrightarrow P = P'$ então, antes de qualquer cálculo, sabemos que nossa radiação emitida será a mesma nos dois referenciais. Vamos então calcular $P'$ em relação ao campo magnético $B$ e as constantes relativísticas.
 
     Como já descobrimos $E' = \gamma v\times B$, esse campo faz com que a partícula acelere no referencial $F'$, ou seja $v'$ começa a crescer e será diferente de 0 em $F'$ após o instante que estamos analisando. Desenvolvendo a equação $F = m_ea \Rightarrow eE' = m_ea \Rightarrow a = eE'/m_e$, obtemos a aceleração do elétron. Utilizando o resultado da equação \ref{eqMaster}, essa aceleração causa uma irradiação no elétron a uma taxa de
     \begin{equation} \label{eq13}
@@ -223,6 +335,45 @@
     e a aproximação final foi feita devido ao fato de nosso elétron ser altamente relativístico.
 
     Veja que após o instante de tempo $\delta t$ devemos escolher um novo referencial $F''$ que o elétron esteja parado ($v'' = 0$), já que ele está em constante processo de aceleração ($v' \neq 0$ após um $\delta t$), um instante após o outro.
+
+\newpage
+\section{Referências}
+    \subsection{Figuras}
+    Figuras 1 e 2: Mazur, Eric, Principles \& Practice of Physics, Pearson Education (2015)
+
+    Figuras 3 e 5: Purcell, Edward M. \& Morin, David J., Electricity and Magnetism, Cambridge University Press (3rd edition, 2013) (1st edition, vol. 2 da Coleção de Física de Berkeley, 1963).
+
+    Figuras 6 e 7: Jewett \& Serway, Física para cientistas e engenheiros, Cengage (9a ed. (EUA), 2a ed (Brasil), 2018).
+
+    \subsection{Referências bibliográficas}
+    Mazur, Eric, Principles \& Practice of Physics, Pearson Education (2015)
+
+    Bauer, Westfall \& Dias, Física para Universitários, McGraw-Hill  (1a ed., 2012)
+
+    Halliday, Resnick \& Walker, Fundamentos de Física, LTC (10a ed., 2012).
+
+    Jewett \& Serway, Física para cientistas e engenheiros, Cengage (9a ed. (EUA), 2a ed (Brasil), 2018).
+
+    Purcell, Edward M. \& Morin, David J., Electricity and Magnetism, Cambridge University Press (3rd edition, 2013) (1st edition, vol. 2 da Coleção de Física de Berkeley, 1963).
+
+    Nussenzveig, H.M., Eletromagnetismo, Curso de Física Básica, vol. 3, Ed. Edgard Blücher, (1997).
+
+
+    \href{https://en.wikipedia.org/wiki/Abraham\%E2\%80\%93Lorentz_force}{Abraham–Lorentz force (Wikipedia)}
+
+    \href{https://en.wikipedia.org/wiki/Larmor_formula}{Larmor formula (Wikipedia)}
+
+    \href{https://en.wikipedia.org/wiki/Bohr_radius}{Bohr radius (Wikipedia)}
+
+    \href{https://en.wikipedia.org/wiki/Vacuum_permeability}{Vacuum permeability (Wikipedia)}    
+
+    \href{http://physicspages.com/pdf/Electrodynamics/Li%C3%A9nard%27s%20generalization%20of%20the%20Larmor%20formula%20for%20an%20accelerating%20charge.pdf}{LIÉNARD’S GENERALIZATION OF THE LARMOR FORMULA FOR AN ACCELERATING CHARGE (physicspages)}
+
+    \href{https://physicspages.com/pdf/Electrodynamics/Synchrotron%20radiation.pdf}{SYNCHROTRON RADIATION (physicspages)}
+
+    \href{https://www2.ph.ed.ac.uk/~playfer/EMlect18.pdf}{Lecture 18 of Relativity \& Electromagnetism from The University of Edinburgh}
+
+    \href{https://www.physics.princeton.edu/~mcdonald/examples/orbitdecay.pdf}{Classical Lifetime of a Bohr Atom James D. Olsen and Kirk T. McDonald Joseph Henry Laboratories, Princeton University, Princeton, NJ 08544 (March 7, 2005; updated May 30, 2017)}
 
 
 \end{document}
